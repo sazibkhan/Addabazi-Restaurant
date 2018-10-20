@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >     
+<h:head>
+<title>Customer List</title>
+  <link rel="shortcut icon" href="http://res.cloudinary.com/simpleview/image/upload/v1438123960/clients/grandrapids/file_bcf11a47-7451-464f-8c4d-c9d3e85e9146.png" />
+</h:head>
+<link href="css/customerList.css" rel='stylesheet' type='text/css' />
+
+<link href="//fonts.googleapis.com/css?family=Signika:300,400,700" rel="stylesheet" />
+<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" />
+
+<h:form id="service" enctype="multipart/form-data" prependId="false">
+	<div class="slider">
+		<marquee behavior="scroll" direction="left">AddaBazi Restaurant.com</marquee>
+		<a class="" href="addabaziHome.xhtml"><img class="image" src="icon/home.png" title="Go Home" alt="Flower" /></a>
+	</div>
+	
+<p:growl sticky="true" showDetail="true" life="3000"/>
+	<div class="validation-grids">
+		<div class="widget-shadow login-form-shadow" data-example-id="basic-forms"> 
+			
+	<div class="form-body form-body-info">
+		<div class="form-group has-feedback">
+		
+		<h:panelGrid columns="2" style="background:none">
+				<h:inputText type="text" value="#{billController.customerInfoDTO.customerID}" style=" margin-left: 10px; height: 40px; width: 267px; font-size: 20px; "/>
+				<h:commandButton value="Search"  update="service" action="#{billController.searchpatient}" style=" margin-left: 10px; height: 45px; width: 108px; font-size: 20px; " />
+		</h:panelGrid>
+						
+			<p:dataTable value="#{billController.customerDtoList}"  var="addList" border="1">
+				<p:column style="width:13px;">
+					<f:facet name="header"><p:outputLabel value="Bill ID"/></f:facet>
+					<p:outputLabel value="#{addList.customerID}" />
+				</p:column>
+					
+				<p:column style="width:15px">
+					<f:facet name="header"><p:outputLabel value="Customer Name"/></f:facet>
+					<p:outputLabel value="#{addList.customerName}"/>
+				</p:column>
+				
+				<p:column style="width:10px">
+					<f:facet name="header"><p:outputLabel value="Customer Number"/></f:facet>
+					<p:outputLabel value="#{addList.customerNumber}"/>
+				</p:column>
+				
+				<p:column style="width:20px">
+					<f:facet name="header"><p:outputLabel value="Bill Date"/></f:facet>
+					<p:outputLabel value="#{addList.dateTime}"/>
+				</p:column>
+				
+				<p:column style="width:8px;">
+					<f:facet name="header"><p:outputLabel value="Toutal Amount"/></f:facet>
+					<p:outputLabel value="#{addList.toutalamount}" />
+				</p:column>
+				
+				
+				<p:column style="width:1px;">
+					<f:facet name="header"><p:outputLabel value="Action"/></f:facet>
+					<h:commandLink value="Bill Details" action="serviceRegistration.xhtml?faces-redirect=true" style="margin-top:0px; margin-left:25px; background:none; color:white; font-size: 17px; ">
+						<f:setPropertyActionListener value="#{addList}" target="#{billController.customerInfoDTO}"/>
+					</h:commandLink>
+				</p:column>
+				
+			</p:dataTable>
+			   
+		</div>
+	</div>
+</div>
+</div>
+		</h:form>
+					
+					
+		
+</ui:composition>
